@@ -7,6 +7,9 @@ use \Psr\Http\Message\ServerRequestInterface;
 use \React\Http\{ Server, Response };
 use \FastRoute;
 use \FastRoute\Dispatcher;
+
+define('SIGINT', 2);
+
 class App
 {
     private int $port;
@@ -39,6 +42,9 @@ class App
         $this->port = $port;
         $loop = \React\EventLoop\Factory::create();
 
+        $loop->addSignal(SIGINT, function (int $signal) {
+            echo 'Caught user interrupt signal' . PHP_EOL;
+        });
         $socket = new \React\Socket\Server('0.0.0.0:'.$port, $loop);
 
         // add the last handler to the middleware chain
