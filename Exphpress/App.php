@@ -44,6 +44,7 @@ class App
 
         $loop->addSignal(SIGINT, function (int $signal) {
             echo 'Caught user interrupt signal' . PHP_EOL;
+            exit;
         });
         $socket = new \React\Socket\Server('0.0.0.0:'.$port, $loop);
 
@@ -57,7 +58,7 @@ class App
         $this->server->listen($socket);
 
 
-        error_log('Exphpress app running on ' . $port);
+        error_log('Exphpress app is running on ' . $port);
         $loop->run();
     }
 
