@@ -1,5 +1,5 @@
 {
-    "name": "balintsera/exphpress",
+    "name": "balintsera/exphpress-dev",
     "description": "A react php clone of the famous Express framework",
     "type": "library",
     "require-dev": {
@@ -15,11 +15,15 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "react/event-loop": "^1.1.1",
-        "react/http": "dev-master",
-        "nikic/fast-route": "^1.3"
+        "balintsera/exphpress": "dev-master"
     },
-    "autoload": {
-        "psr-4": {"Exphpress\\": "Exphpress/"}
-    }
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./Exphpress",
+            "options": {
+                "symlink": true
+            }
+        }
+    ]
 }
